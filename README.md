@@ -24,3 +24,19 @@ Dieser Skill greift auf unseren Backend-Dienst zu, der entsprechende Quellcode i
 Technisch gliedert der Dienst sich in eine API und einen funktionalen Kern.
 Für die Datenhaltung nutzen wir hier auf [MongoDB](https://www.mongodb.com/download-center/community) und [RabbitMQ](https://www.rabbitmq.com/).
 Weitere Dienste wie die konzeptionell geplante grafische Oberfläche können ebenfalls auf dieses Backend zugreifen.
+
+## Zusammenspiel der Dienste & Implementierungsstand
+
+Im folgenden Diagramm ist das Zusammenspiel der Dienste dokumentiert.
+Durchgezogene Pfeile symbolisieren dabei implementierte Teilschritte, gestrichelte noch zu implementierende.
+Da sich das senden einer Nachricht gegenüber dem Empfangen einer Nachricht nur im Inhalt von Anfrage und Antwort unterscheidet, werden beide Fälle anhand eines Diagramms erläutert.
+
+![Sequenzdiagramm](sequenz.png)
+Um den Internetzugriff zu ermöglichen greifen wir mit dem Telefon in Schritt 1 und 10 auf bestehende Technologie zurück.
+Der von uns implementierte Proxy setzt die Sprachdaten zwischen Schritt 2 und 3 vom SIP Protokoll um und leitet diese an AVS weiter.
+AVS Transkribiert die Daten und gibt die Anfrage als Transkript an den Skill (Schritt 4), welcher diese an das Backend weiterleitet (Schritt 5).
+Die Methoden zum speichern und abrufen von Nachrichten sind im Backend umgesetzt, fehlen im Skill aber bisher noch.
+Die Trennung in Teilschritte ist hier erfolgt, um das Backend für weitere Zugriffsmöglichkeiten (ggf. grafische Oberfläche) weiter nutzen zu können.
+Seitens des Backends wird beim Verarbeiten der Anfrage nun entweder eine Erfolgsmeldung (Senden einer Nachricht) oder der Inhalt vorhandener Nachrichten (Abruf der Nachrichten) zurückgegeben (Schritt 6) und vom Skill an AVS weitergeleitet (Schritt 7).
+AVS setzt die textuelle Antwort nun in Sprache um und sendet diese an den Proxy zurück (Schritt 8).
+Der Proxy setzt diese nun auf das SIP Protokoll um und leitet sie and Telefon zurück (Schritt 9).

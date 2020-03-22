@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+skinparam componentStyle uml2
+
+autonumber
+
+actor Benutzer
+participant Telefon
+entity TONI #green
+participant AVS
+entity "KALLI Skill" as SKILL #green
+entity "KALLI Backend" as BACKEND #green
+
+Benutzer -> Telefon : Anruf an Dienst
+Telefon -> TONI : Nachricht senden (Sprachdaten)
+TONI -> AVS : Nachricht senden (Sprachdaten)
+AVS --> SKILL: Nachricht senden (Transkript)
+SKILL -> BACKEND : Nachricht senden (Transkript)
+BACKEND -> SKILL : Nachricht angekommen (Text)
+SKILL --> AVS : Nachricht angekommen (Text)
+AVS -> TONI : Antwort (Sprachdaten)
+TONI --> Telefon : Antwort (Sprachdaten)
+Telefon -> Benutzer : Antwort (Sprachdaten)
+@enduml
