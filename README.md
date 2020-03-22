@@ -5,3 +5,5 @@ Dieses Repository enthält die Dokumentation zum Beitrag [<3cor](https://heartco
 Die bisherige Implementierung von <3cor basiert auf zwei funktionalen Komponenten:
 1. TONI
 2. KALLI
+
+![Softwarearchitektur](architecture.png)
