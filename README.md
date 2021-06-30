@@ -1,6 +1,8 @@
 # heartcor-doc
 Dieses Repository enthält die Dokumentation zum Beitrag [<3cor](https://heartcor.org) im [Wir vs. Virus Hackathon](https://wirvsvirushackathon.devpost.com/).
 
+Da der Hackathon abgeschlossen ist und das Projekt nicht weiter entwickelt, betreut und gepflegt wird, ist dieses Repository archiviert.
+
 ## Softwarearchitektur
 Die bisherige Implementierung von <3cor basiert auf zwei funktionalen Komponenten:
 1. TONI - Telefonische ONline Integration: unser Telefon zu Alexa Gateway
